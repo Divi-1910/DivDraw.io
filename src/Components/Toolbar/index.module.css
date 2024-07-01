@@ -1,0 +1,80 @@
+.container {
+	@apply fixed bottom-5 left-1/2 transform -translate-x-1/2 px-6 py-3 flex rounded-full border border-gray-300 bg-white;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	transition: all 0.3s ease;
+	z-index: 1000;
+	animation: slideUp 0.5s ease-out;
+}
+
+.container:hover {
+	@apply shadow-2xl;
+}
+
+.toolItem {
+	@apply flex justify-center items-center text-lg p-3 text-gray-800 mx-2 cursor-pointer relative;
+	transition: all 0.3s ease;
+	border-radius: 50%; /* For circular buttons */
+}
+
+.toolItem:hover {
+	@apply bg-blue-100 text-blue-700;
+	transform: scale(1.1);
+	animation: pulse 0.5s infinite alternate;
+}
+
+.toolItem.active {
+	@apply bg-blue-500 text-white;
+	transform: scale(1.2);
+	animation: glow 1s infinite alternate;
+}
+
+/* Slide-up animation */
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Glow effect for active tool item */
+.toolItem.active::before {
+	content: "";
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	right: -5px;
+	bottom: -5px;
+	border-radius: 50%;
+	box-shadow: 0 0 20px rgba(1, 1, 32, 0);
+	z-index: -1;
+	transition: box-shadow 0.3s ease;
+}
+
+/* Pulse animation for hover state */
+@keyframes pulse {
+	from {
+		transform: scale(1.1);
+	}
+	to {
+		transform: scale(1.2);
+	}
+}
+
+/* Optional bounce animation for items */
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+}
+
+.toolItem:hover {
+	animation: bounce 0.5s infinite;
+}
